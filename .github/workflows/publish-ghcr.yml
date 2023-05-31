@@ -54,4 +54,4 @@ jobs:
           #tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           #tags: ${{ steps.meta1.outputs.tags }}
           #labels: ${{ steps.meta1.outputs.labels }}
-          tags: ghcr.io/${{ github.repository }}:v0.0.1
+          tags: ghcr.io/${{ github.repository }}:0.0.1
