@@ -1,7 +1,7 @@
 Container combining AdGuard Home and Unbound. I don't like the fact you cannot use 127.0.0.1 as an Upstream DNS server when trying to combine these two programs as seperate containers. The only way I found was using the Docker container IP address, which to me isn't reliable enough.
 
 Base: alpine:3.18.0 \
-Unbound: 1.17.1-r1 \
+Unbound: latest \
 AdGuardHome: 0.107.29
 
 Use the same volumemappings as the original AdGuardHome container. In fact, you can just swap in this image and everything still works. You only have to update your Upstream DNS server to __127.0.0.1:5053__, which enables Unbound.
