@@ -1,7 +1,6 @@
 #FROM alpine:3.18.0
 FROM --platform=$BUILDPLATFORM alpine:3.18.0 AS build
 
-ARG AGH_BUILD = "v0.107.29"
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG TARGETVARIANT
@@ -21,7 +20,7 @@ COPY files/ /opt/
 
 # AdGuardHome v0.107.29
 #RUN wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
-RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/${AGH_BUILD}/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
+RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.29/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
 	&& mkdir -p /opt/adguardhome/conf /opt/adguardhome/work \
 	&& tar xf AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz ./AdGuardHome/AdGuardHome  --strip-components=2 -C /opt/adguardhome \
 	&& /bin/ash /opt/adguardhome \
