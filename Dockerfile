@@ -1,5 +1,5 @@
 #FROM alpine:3.13.5
-FROM --platform=$BUILDPLATFORM alpine:3.18.0 AS build
+FROM --platform=$BUILDPLATFORM alpine:3.18 AS build
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
