@@ -27,23 +27,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GH_PAT }}
-      - 
-        name: Docker meta
-        id: meta1 # you'll use this in the next step
-        uses: docker/metadata-action@v4
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ghcr.io/${{ github.repository }}
-          # Docker tags based on the following events/attributes
-          tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
       -
         name: Build and push
         uses: docker/build-push-action@v4
@@ -51,9 +34,6 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v6,linux/arm/v7
           push: true
-          #tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
-          #tags: ${{ steps.meta1.outputs.tags }}
-          #labels: ${{ steps.meta1.outputs.labels }}
           tags: |
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:0.107.29
