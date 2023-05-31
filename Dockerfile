@@ -1,5 +1,5 @@
 #FROM alpine:3.13.5
-FROM --platform=$BUILDPLATFORM alpine:3.18 AS build
+FROM --platform=$BUILDPLATFORM alpine:3.17.3 AS build
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
@@ -11,7 +11,7 @@ RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM}" \
     && printf '..%s..' "and  uname -m : " && uname -m
  
 RUN apk add --no-cache \
-	unbound=1.17.1-r1
+	unbound=1.17.1-r0
 
 WORKDIR /tmp
 
