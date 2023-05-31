@@ -29,5 +29,5 @@ jobs:
       - name: Build and pulish the image
         run: |
           docker login --username hat3ph --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build --platform linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v6,linux/arm/v7 . --tag ghcr.io/hat3ph/adguard-unbound:latest
+          docker buildx build --platform linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v6,linux/arm/v7 . --tag ghcr.io/hat3ph/adguard-unbound:latest
           docker push ghcr.io/hat3ph/adguard-unbound:latest
