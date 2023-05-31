@@ -52,5 +52,6 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v6,linux/arm/v7
           push: true
           #tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
-          tags: ${{ steps.meta1.outputs.tags }}
-          labels: ${{ steps.meta1.outputs.labels }}
+          #tags: ${{ steps.meta1.outputs.tags }}
+          #labels: ${{ steps.meta1.outputs.labels }}
+          tags: ghcr.io/${{ github.repository }}:v0.0.1
