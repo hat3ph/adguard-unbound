@@ -11,7 +11,7 @@ RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM}" \
     && printf '..%s..' "and  uname -m : " && uname -m
  
 RUN apk add --no-cache \
-	unbound=1.17.1-r1
+	unbound=1.17.1-r1 libcap
 
 WORKDIR /tmp
 
