@@ -10,8 +10,7 @@ RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM}" \
     && printf '..%s..' "With uname -s : " && uname -s \
     && printf '..%s..' "and  uname -m : " && uname -m
  
-RUN apk add --no-cache \
-	unbound=1.17.1-r1 libcap
+RUN apk add --no-cache unbound=1.17.1-r1 libcap
 
 WORKDIR /tmp
 
