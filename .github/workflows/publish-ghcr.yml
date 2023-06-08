@@ -27,7 +27,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
-          images: hat3ph/adguard-home
+          images: ${{ github.repository }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
