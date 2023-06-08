@@ -17,6 +17,7 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+        run: echo "AdGuard Home version is $AGH_VER"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
