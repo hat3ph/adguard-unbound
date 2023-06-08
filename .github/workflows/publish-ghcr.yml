@@ -49,4 +49,4 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ steps.metadata.outputs.tags }}
+            ghcr.io/${{ steps.metadata.outputs.tags }}
