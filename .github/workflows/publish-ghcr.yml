@@ -18,7 +18,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: testing
+        name: AGH_VER
         run: echo "AdGuard Home version is $AGH_VER"
       -
         name: Set up QEMU
@@ -42,4 +42,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:0.107.29
+            ghcr.io/${{ github.repository }}:$AGH_VER
