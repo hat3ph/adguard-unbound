@@ -46,5 +46,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v6,linux/arm/v7
           push: true
-          tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ steps.metadata.outputs.tags }}
