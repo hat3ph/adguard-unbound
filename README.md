@@ -20,6 +20,6 @@ For Unbound: \
 Run below command to download the docker image. \
 ``docker pull ghcr.io/hat3ph/adguard-unbound``
 
-Credit: 
-    https://github.com/lolgast1987/adguard-unbound
-    https://github.com/AdguardTeam/AdGuardHome
+Credit:
+- https://github.com/lolgast1987/adguard-unbound
+- https://github.com/AdguardTeam/AdGuardHome
