@@ -1,7 +1,7 @@
 #FROM alpine:3.18.0
 FROM --platform=$BUILDPLATFORM alpine:3.18.4 AS build
 
-ARG AGH_VER=v0.107.40
+ARG AGH_VER=v0.107.41
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG TARGETVARIANT
@@ -40,5 +40,4 @@ HEALTHCHECK --interval=30s --timeout=15s --start-period=5s\
 
 CMD ["/opt/entrypoint.sh"]
 
-LABEL \
-    maintainer="hata_ph <hata_ph@gmail.com>"
+LABEL maintainer="hata_ph <hata_ph@gmail.com>"
