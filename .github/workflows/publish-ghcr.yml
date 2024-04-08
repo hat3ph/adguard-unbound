@@ -42,4 +42,4 @@ jobs:
           outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=AGH multi-arch image
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:0.107.47
+            ghcr.io/${{ github.repository }}:0.107.48
