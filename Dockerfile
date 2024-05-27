@@ -1,7 +1,7 @@
 #FROM alpine:3.18.0
-FROM --platform=$BUILDPLATFORM alpine:3.19.1 AS build
+FROM --platform=$BUILDPLATFORM alpine:latest AS build
 
-ARG AGH_VER=v0.107.48
+ARG AGH_VER=v0.107.50
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG TARGETVARIANT
@@ -23,7 +23,7 @@ COPY files/ /opt/
 RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/${AGH_VER}/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
 	&& mkdir -p /opt/adguardhome/conf /opt/adguardhome/work \
 	&& tar xf AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz ./AdGuardHome/AdGuardHome  --strip-components=2 -C /opt/adguardhome \
-	&& /bin/ash /opt/adguardhome \
+	&& /bin/sh /opt/adguardhome \
 	&& chown -R nobody: /opt/adguardhome \
 	&& setcap 'CAP_NET_BIND_SERVICE=+eip CAP_NET_RAW=+eip' /opt/adguardhome/AdGuardHome \
 	&& chmod +x /opt/entrypoint.sh \
