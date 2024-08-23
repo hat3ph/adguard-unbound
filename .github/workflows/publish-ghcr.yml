@@ -4,11 +4,11 @@ name: Docker Image CI for GHCR
 
 on:
   push:
-    branches: [main]
+    branches: [arm64-test]
     paths-ignore:
       - "README.md"
   pull_request:
-    branches: [main]
+    branches: [arm64-test]
     paths-ignore:
       - "README.md"
 
@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v5,linux/arm/v6,linux/arm/v7
+          platforms: linux/amd64,linux/arm64v8,linux/ppc64le,linux/386,linux/arm/v5,linux/arm/v6,linux/arm/v7
           push: true
           outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=AGH multi-arch image
           tags: |
