@@ -5,7 +5,7 @@ ARG AGH_VER=v0.107.52
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG TARGETVARIANT
-RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM}" \
+RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM} using ${BUILDPLATFORM} as build platform" \
     && printf '..%s..' ", TARGETARCH=${TARGETARCH}" \
     && printf '..%s..' ", TARGETVARIANT=${TARGETVARIANT} \n" \
     && printf '..%s..' "With uname -s : " && uname -s \
