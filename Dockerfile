@@ -1,5 +1,5 @@
 #FROM alpine:latest
-FROM --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v5,linux/arm/v6,linux/arm/v7 alpine:latest AS build
+FROM --platform="linux/amd64,linux/arm64,linux/ppc64le,linux/386,linux/arm/v5,linux/arm/v6,linux/arm/v7" alpine:latest AS build
 
 ARG AGH_VER=v0.107.52
 ARG TARGETPLATFORM
