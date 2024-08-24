@@ -6,7 +6,7 @@ ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 ARG TARGETARCH
 ARG TARGETVARIANT
-RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM} using ${BUILDPLATFORM} as build platform" \
+RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM} using BUILDPLATFORM=${BUILDPLATFORM} as build platform" \
     && printf '..%s..' ", TARGETARCH=${TARGETARCH}" \
     && printf '..%s..' ", TARGETVARIANT=${TARGETVARIANT} \n" \
     && printf '..%s..' "With uname -s : " && uname -s \
