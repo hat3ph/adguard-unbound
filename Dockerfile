@@ -1,5 +1,5 @@
-FROM alpine:latest
-#FROM --platform=$BUILDPLATFORM alpine:latest AS build
+#FROM alpine:latest
+FROM --platform=$TARGETPLATFORM alpine:latest AS build
 
 ARG AGH_VER=v0.107.52
 ARG TARGETPLATFORM
