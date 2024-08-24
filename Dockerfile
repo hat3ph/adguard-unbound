@@ -1,5 +1,5 @@
 #FROM alpine:latest
-FROM --platform=$BUILDPLATFORM alpine:latest
+FROM --platform=$TARGETPLATFORM alpine:latest
 
 ARG AGH_VER=v0.107.52
 ARG TARGETPLATFORM
