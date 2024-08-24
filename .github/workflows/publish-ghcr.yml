@@ -34,12 +34,12 @@ jobs:
           password: ${{ secrets.GH_PAT }}
       -
         name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
-          platforms: linux/amd64,linux/arm64v8,linux/ppc64le,linux/386,linux/arm/v5,linux/arm/v6,linux/arm/v7
+          platforms: linux/arm64
           push: true
           outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=AGH multi-arch image
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:0.107.52
+            ghcr.io/${{ github.repository }}:0.107.52.1

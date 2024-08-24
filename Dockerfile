@@ -1,5 +1,5 @@
-#FROM alpine:3.18.0
-FROM --platform=$BUILDPLATFORM alpine:latest AS build
+FROM alpine:latest
+#FROM --platform=$BUILDPLATFORM alpine:latest AS build
 
 ARG AGH_VER=v0.107.52
 ARG TARGETPLATFORM
@@ -19,8 +19,8 @@ RUN wget https://www.internic.net/domain/named.root -qO- >> /etc/unbound/root.hi
 
 COPY files/ /opt/
 
-#RUN wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
-RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/${AGH_VER}/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
+RUN wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
+#RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/${AGH_VER}/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
 	&& mkdir -p /opt/adguardhome/conf /opt/adguardhome/work \
 	&& tar xf AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz ./AdGuardHome/AdGuardHome  --strip-components=2 -C /opt/adguardhome \
 	&& /bin/sh /opt/adguardhome \
