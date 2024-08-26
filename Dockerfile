@@ -12,12 +12,12 @@ RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM} using BUI
     && printf '..%s..' "With uname -s : " && uname -s \
     && printf '..%s..' "and  uname -m : " && uname -m
  
-RUN apk add --no-cache unbound libcap
+RUN apk add --no-cache unbound libcap wget
 
 WORKDIR /tmp
 
 # download root.hints files
-RUN curl -o /var/lib/unbound/root.hints https://www.internic.net/domain/named.root
+RUN wget https://www.internic.net/domain/named.root -qO- >> /var/lib/unbound/root.hints
 
 COPY files/ /opt/
 
