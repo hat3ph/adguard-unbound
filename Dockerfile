@@ -16,7 +16,7 @@ RUN apk add --no-cache unbound libcap
 
 WORKDIR /tmp
 
-RUN wget https://www.internic.net/domain/named.root -qO- >> /etc/unbound/root.hints
+RUN wget https://www.internic.net/domain/named.root -qO- >> /var/lib/unbound/root.hints
 
 COPY files/ /opt/
 
