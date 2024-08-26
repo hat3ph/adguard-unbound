@@ -1,5 +1,6 @@
 #FROM alpine:3.18.0
-FROM --platform=$BUILDPLATFORM alpine:latest AS build
+#FROM --platform=$BUILDPLATFORM alpine:latest AS build
+FROM alpine:latest AS build
 
 ARG AGH_VER=v0.107.52
 ARG TARGETPLATFORM
@@ -15,7 +16,7 @@ RUN apk add --no-cache unbound libcap
 
 WORKDIR /tmp
 
-RUN wget https://www.internic.net/domain/named.root -qO- >> /etc/unbound/root.hints
+RUN wget https://www.internic.net/domain/named.root -qO- >> /var/lib/unbound/root.hints
 
 COPY files/ /opt/
 
