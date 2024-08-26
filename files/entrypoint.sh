@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# generate/update trusted root anchor file
+unbound-anchor -v -a /var/lib/unbound/root.key
+
 unbound -c /opt/unbound/unbound.conf
 status=$?
 if [ $status -ne 0 ]; then
