@@ -32,6 +32,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GH_PAT }}
+      - 
+        name: Extract AGH version from Dockerfile
+        id: extract-version
+        run: |
+          VERSION=$(grep -oP '(?<=AGH_VER=)\S+' Dockerfile)
+          echo "Extracted AGH version is: $VERSION"
+          echo "AGH_VERSION=$VERSION" >> "$GITHUB_OUTPUT"
       -
         name: Build and push
         uses: docker/build-push-action@v6
@@ -42,4 +49,4 @@ jobs:
           outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=AGH multi-arch image
           tags: |
             ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:0.107.57
+            ghcr.io/${{ github.repository }}:${{ steps.extract-version.outputs.AGH_VERSION }}
