@@ -13,13 +13,13 @@ RUN printf '..%s..' "I'm building for TARGETPLATFORM=${TARGETPLATFORM} using BUI
     && printf '..%s..' "With uname -s : " && uname -s \
     && printf '..%s..' "and  uname -m : " && uname -m
  
-RUN apk add --no-cache unbound libcap
+# install unbound packages
+RUN apk --no-cache add ca-certificates libcap tzdata unbound && \
+	mkdir -p /opt/adguardhome/conf /opt/adguardhome/work && \
+	chown -R nobody: /opt/adguardhome
 
-WORKDIR /tmp
-
-# download root.hints files
-RUN mkdir -p /var/lib/unbound
-RUN wget https://www.internic.net/domain/named.root -qO- >> /var/lib/unbound/root.hints
+# download root.hints files for unbound
+RUN mkdir -p /var/lib/unbound && wget https://www.internic.net/domain/named.root -qO- >> /var/lib/unbound/root.hints
 
 COPY files/ /opt/
 
@@ -27,20 +27,19 @@ COPY files/ /opt/
 RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/${AGH_VER}/AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz >/dev/null 2>&1 \
 	&& mkdir -p /opt/adguardhome/conf /opt/adguardhome/work \
 	&& tar xf AdGuardHome_linux_${TARGETARCH}${TARGETVARIANT}.tar.gz ./AdGuardHome/AdGuardHome  --strip-components=2 -C /opt/adguardhome \
-	&& /bin/sh /opt/adguardhome \
-	&& setcap 'CAP_NET_BIND_SERVICE=+eip CAP_NET_RAW=+eip' /opt/adguardhome/AdGuardHome \
+	&& chown nobody:nogroup /opt/adguardhome/AdGuardHome \
+	&& setcap 'CAP_NET_BIND_SERVICE=+eip' /opt/adguardhome/AdGuardHome \
 	&& chmod +x /opt/entrypoint.sh \
 	&& rm -rf /tmp/* /var/cache/apk/*
 
-RUN chmod +x /opt/adguardhome/AdGuardHome && chown root:root /opt/adguardhome/AdGuardHome
 WORKDIR /opt/adguardhome/work
 
 VOLUME ["/opt/adguardhome/conf", "/opt/adguardhome/work", "/opt/unbound"]
 
 EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 853/tcp 3000/tcp 5053/udp 5053/tcp
 
-HEALTHCHECK --interval=30s --timeout=15s --start-period=5s\
-            CMD sh /opt/healthcheck.sh
+HEALTHCHECK --interval=30s --timeout=15s --start-period=5s
+CMD sh /opt/healthcheck.sh
 
 CMD ["/opt/entrypoint.sh"]
 
